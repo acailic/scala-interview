@@ -13,7 +13,7 @@ object Refactoring {
   )
 
   def getCategories(files: List[File]): List[String] = {
-    val categories: List[String] = List()
+    /*val categories: List[String] = List()
 
     if(files != null) {
       for(file <- files) {
@@ -22,7 +22,8 @@ object Refactoring {
         }
       }
     }
-
-    return categories
+    return categories*/
+    // refactored
+    files.map(_.category)
   }
 }
