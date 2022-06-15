@@ -14,7 +14,20 @@ import scala.concurrent.ExecutionContext.Implicits.global
  */
 object AsyncBasic {
 
-  def compute(id: String) = ???
+  def compute(id: String) = {
+    val f1 = Future {
+      Thread.sleep(1000)
+      1098
+    }
+    val f2 = Future {
+      Thread.sleep(1000)
+      1
+    }
+    for {
+      a <- f1
+      b <- f2
+    } yield a + b
+  }
 
 }
 

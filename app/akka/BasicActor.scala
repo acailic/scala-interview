@@ -18,6 +18,10 @@ object FireActor {
    * Make it print "Hello there." and "What?"
    */
   def fireActor(): Unit = {
+    val system = ActorSystem("HelloSystem")
+    val helloActor = system.actorOf(Props[Actor], name = "helloactor")
+    helloActor ! "Hello"
+
     //    val system = ActorSystem("Actor System")
     //    val basic_actor = system.actorOf(Props[BasicActor], name = "basic actor")
   }

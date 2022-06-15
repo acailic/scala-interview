@@ -30,11 +30,19 @@ object WhatsWrong2 {
 
   //Review this code. What could be done better ? How would you do it ?
   def getCEOAndEnterprise(ceo_id: Option[String]): Future[(Option[CEO], Option[Enterprise])] = {
-    for {
-      ceo        <- CEODao.byId(ceo_id.get)
-      enterprise <- EnterpriseDao.byCEOId(ceo_id.get)
-    } yield {
-      (ceo, enterprise)
-    }
+//    for {
+//      ceo        <- CEODao.byId(ceo_id.get)
+//      enterprise <- EnterpriseDao.byCEOId(ceo_id.get)
+//    } yield {
+//      (ceo, enterprise)
+//    }
+    ceo_id.map { id =>
+      for {
+        ceo        <- CEODao.byId(id)
+        enterprise <- EnterpriseDao.byCEOId(id)
+      } yield {
+        (ceo, enterprise)
+      }
+    }.getOrElse(Future((None, None)))
   }
 }
